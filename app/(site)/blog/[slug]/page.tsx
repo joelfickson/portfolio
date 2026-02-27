@@ -20,17 +20,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = await client.fetch(POST_QUERY, { slug });
   if (!post) return { title: "Post Not Found" };
+  const description = post.excerpt || `${post.title} by Joel Fickson Ngozo`;
+  const images = post.mainImage?.asset
+    ? [urlFor(post.mainImage).width(1200).height(630).url()]
+    : undefined;
   return {
     title: post.title,
-    description: post.excerpt || `${post.title} by Joel Fickson Ngozo`,
+    description,
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description,
       type: "article",
       publishedTime: post.publishedAt,
-      ...(post.mainImage?.asset && {
-        images: [urlFor(post.mainImage).width(1200).height(630).url()],
-      }),
+      authors: ["Joel Fickson Ngozo"],
+      ...(images && { images }),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      ...(images && { images }),
+    },
+    alternates: {
+      canonical: `/blog/${slug}`,
     },
   };
 }

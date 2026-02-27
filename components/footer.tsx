@@ -20,7 +20,8 @@ export function Footer() {
               JFN<span className="text-accent-500">.</span>
             </Link>
             <p className="mt-3 text-sm text-stone-500 dark:text-stone-500 leading-relaxed max-w-xs">
-              Building products that move Africa forward. From Malawi to the world.
+              Senior engineer and founder. Solving complex problems across commerce, fintech, and
+              AI.
             </p>
           </div>
           <div>
@@ -63,7 +64,7 @@ export function Footer() {
             &copy; {new Date().getFullYear()} Joel Fickson Ngozo
           </p>
           <p className="text-xs font-mono text-stone-300 dark:text-stone-700">
-            Lilongwe / San Francisco / The Internet
+            Lilongwe / San Francisco / Berlin
           </p>
         </div>
       </div>

@@ -6,6 +6,18 @@ import { ProjectCard } from "@/components/project-card";
 export const metadata: Metadata = {
   title: "Projects",
   description: "Open source projects and technical work by Joel Fickson Ngozo.",
+  openGraph: {
+    title: "Projects",
+    description: "Open source projects and technical work by Joel Fickson Ngozo.",
+    url: "/projects",
+  },
+  twitter: {
+    title: "Projects",
+    description: "Open source projects and technical work by Joel Fickson Ngozo.",
+  },
+  alternates: {
+    canonical: "/projects",
+  },
 };
 
 const fallbackProjects = [

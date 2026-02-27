@@ -1,31 +1,64 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Joel Fickson Ngozo - Technical founder and full-stack engineer from Malawi, building products across healthcare, AI safety, and music streaming.",
+    "Joel Fickson Ngozo - Senior full-stack engineer at CommerceTools and founder of Sekuire, Elior Health, and Vwaza. Based in Berlin.",
+  openGraph: {
+    title: "About",
+    description:
+      "Joel Fickson Ngozo - Senior full-stack engineer at CommerceTools and founder of Sekuire, Elior Health, and Vwaza. Based in Berlin.",
+    url: "/about",
+  },
+  twitter: {
+    title: "About",
+    description:
+      "Joel Fickson Ngozo - Senior full-stack engineer at CommerceTools and founder of Sekuire, Elior Health, and Vwaza. Based in Berlin.",
+  },
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 const timeline = [
   {
-    year: "Now",
-    title: "Founder & CEO, Sekuire",
-    description: "Building runtime control infrastructure for AI agents.",
+    year: "2022",
+    title: "Senior Engineer, CommerceTools",
+    description: "Building APIs and B2B enterprise starter-kits for commerce solutions in Berlin.",
+  },
+  {
+    year: "2022",
+    title: "Senior Engineer, ScalingFunds",
+    description:
+      "GraphQL APIs, React front-ends, and blockchain microservices for fintech in Berlin.",
+  },
+  {
+    year: "2021",
+    title: "Engineer, AKTEK",
+    description: "Security product APIs and geospatial integrations in London.",
   },
   {
     year: "2020",
-    title: "Founder, Elior Health Labs",
-    description: "Digital healthcare solutions for underserved communities.",
+    title: "Engineer, CollabWorks",
+    description: "Full-stack Node.js and React applications in Redwood City, California.",
   },
   {
-    year: "2018",
-    title: "Founder, Vwaza Multimedia",
-    description: "Music streaming platform connecting African artists with global audiences.",
+    year: "2017",
+    title: "Founded Elior Health Labs",
+    description:
+      "Digital healthcare platform with Flutter, React Native, and Node.js. Malawi and California.",
+  },
+  {
+    year: "2016",
+    title: "Founded TECULES",
+    description: "Edtech startup for high school learners in Lilongwe, Malawi.",
   },
   {
     year: "2015",
     title: "Software Engineer",
-    description: "Began building full-stack applications professionally. Open source contributor.",
+    description:
+      "Started building professionally. University of Malawi, Cisco certifications, open source.",
   },
 ];
 
@@ -44,8 +77,7 @@ export default function AboutPage() {
         className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-stone-900 dark:text-stone-100 mb-20 max-w-4xl leading-[1.05]"
         style={{ animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both" }}
       >
-        From Malawi to the world,{" "}
-        <span className="text-stone-300 dark:text-stone-700">one product at a time.</span>
+        Engineer first, <span className="text-stone-300 dark:text-stone-700">founder always.</span>
       </h1>
 
       <div
@@ -53,32 +85,39 @@ export default function AboutPage() {
         style={{ animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both" }}
       >
         <div className="relative">
-          <div className="absolute left-0 top-0 bottom-0 w-0.5 gradient-line-v rounded-full" />
-          <p className="pl-6 font-display text-xl text-stone-400 dark:text-stone-500 leading-relaxed">
-            &ldquo;The best way to predict the future is to build it.&rdquo;
-          </p>
+          <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 dark:bg-stone-900">
+            <Image
+              src="/og.jpg"
+              alt="Joel Fickson Ngozo"
+              width={600}
+              height={800}
+              className="w-full h-full object-cover object-top"
+              priority
+            />
+          </div>
+          <div className="absolute -bottom-3 -right-3 w-24 h-24 border-2 border-accent-500/20 rounded-2xl" />
         </div>
         <div className="space-y-6 text-stone-600 dark:text-stone-400 leading-[1.8]">
           <p>
-            I&apos;m Joel Fickson Ngozo, a full-stack engineer and technical founder with over a
-            decade of experience building software. Born and raised in Malawi, I&apos;ve spent my
-            career at the intersection of technology and real-world impact.
+            I&apos;m Joel Fickson Ngozo, a senior full-stack engineer based in Berlin with over a
+            decade of experience shipping software. I currently work at CommerceTools, building APIs
+            and enterprise commerce solutions. Before that I worked across fintech, security, and
+            SaaS at companies like ScalingFunds, AKTEK, and CollabWorks - from London to San
+            Francisco.
           </p>
           <p>
-            I currently lead Sekuire, where we&apos;re building runtime control infrastructure for
-            AI agents - ensuring autonomous systems remain safe and aligned. Before that, I founded
-            Elior Health Labs to bring digital healthcare to underserved communities, and Vwaza
-            Multimedia to give African artists a platform for their music.
+            Outside of my engineering work, I build ventures. Sekuire is my current focus - runtime
+            control infrastructure for AI agents. I also founded Elior Health Labs (digital
+            healthcare) and Vwaza Multimedia (music streaming for African artists).
           </p>
           <p>
-            My approach to building is grounded in first principles: understand the problem deeply,
-            choose the right tools, ship fast, iterate with real users. I believe the most impactful
-            technology is built close to the problems it solves.
+            I&apos;m from Malawi and studied computer science at the University of Malawi. My career
+            has taken me through California, London, and now Berlin. I thrive on solving complex
+            problems and learning new technologies - from Rust and Go to Kubernetes and blockchain.
           </p>
           <p>
-            When I&apos;m not coding, you&apos;ll find me contributing to open source, writing about
-            engineering challenges, or exploring ways to make technology more accessible across
-            Africa.
+            When I&apos;m not shipping code, I&apos;m contributing to open source, writing about
+            engineering, or exploring the next thing that catches my curiosity.
           </p>
         </div>
       </div>

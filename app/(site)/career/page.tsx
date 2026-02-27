@@ -6,6 +6,20 @@ export const metadata: Metadata = {
   title: "Career",
   description:
     "Career highlights and experience of Joel Fickson Ngozo - Senior Software Engineer and Technical Founder.",
+  openGraph: {
+    title: "Career",
+    description:
+      "Career highlights and experience of Joel Fickson Ngozo - Senior Software Engineer and Technical Founder.",
+    url: "/career",
+  },
+  twitter: {
+    title: "Career",
+    description:
+      "Career highlights and experience of Joel Fickson Ngozo - Senior Software Engineer and Technical Founder.",
+  },
+  alternates: {
+    canonical: "/career",
+  },
 };
 
 const skills = [

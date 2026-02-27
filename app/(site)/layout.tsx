@@ -24,6 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://joelfickson.com"),
   title: {
     default: "Joel Fickson Ngozo - Founder & Engineer",
     template: "%s | Joel Fickson Ngozo",
@@ -35,10 +36,28 @@ export const metadata: Metadata = {
     description:
       "Technical founder and full-stack engineer building products that move Africa forward.",
     type: "website",
+    url: "/",
+    images: [{ url: "/og.jpg", width: 1200, height: 630 }],
+    locale: "en_US",
+    siteName: "Joel Fickson Ngozo",
   },
   twitter: {
     card: "summary_large_image",
     creator: "@joaborun",
+    site: "@joaborun",
+    images: ["/og.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 
@@ -52,6 +71,23 @@ export default function SiteLayout({
       <body
         className={`${syne.variable} ${outfit.variable} ${jetbrainsMono.variable} font-sans bg-stone-50 dark:bg-stone-950 text-stone-800 dark:text-stone-200 antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Joel Fickson Ngozo",
+              url: "https://joelfickson.com",
+              jobTitle: "Founder & Software Engineer",
+              sameAs: [
+                "https://github.com/joaborun",
+                "https://linkedin.com/in/joelfickson",
+                "https://x.com/joaborun",
+              ],
+            }),
+          }}
+        />
         <ThemeProvider>
           <Navigation />
           <main className="min-h-screen pt-16">{children}</main>

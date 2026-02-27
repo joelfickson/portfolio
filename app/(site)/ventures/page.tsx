@@ -7,6 +7,20 @@ export const metadata: Metadata = {
   title: "Ventures",
   description:
     "Companies and ventures founded by Joel Fickson Ngozo - Sekuire, Elior Health Labs, Vwaza Multimedia.",
+  openGraph: {
+    title: "Ventures",
+    description:
+      "Companies and ventures founded by Joel Fickson Ngozo - Sekuire, Elior Health Labs, Vwaza Multimedia.",
+    url: "/ventures",
+  },
+  twitter: {
+    title: "Ventures",
+    description:
+      "Companies and ventures founded by Joel Fickson Ngozo - Sekuire, Elior Health Labs, Vwaza Multimedia.",
+  },
+  alternates: {
+    canonical: "/ventures",
+  },
 };
 
 const fallbackVentures = [
@@ -26,7 +40,7 @@ const fallbackVentures = [
     description:
       "Digital healthcare solutions bringing accessible medical infrastructure to underserved communities across Africa.",
     role: "Founder",
-    status: "active",
+    status: "inactive",
     order: 2,
   },
   {
@@ -35,7 +49,7 @@ const fallbackVentures = [
     description:
       "Music streaming platform connecting African artists with global audiences. Enabling discovery and fair compensation for creators.",
     role: "Founder",
-    status: "active",
+    status: "inactive",
     order: 3,
   },
 ];

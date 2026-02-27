@@ -3,6 +3,18 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Get in touch with Joel Fickson Ngozo.",
+  openGraph: {
+    title: "Contact",
+    description: "Get in touch with Joel Fickson Ngozo.",
+    url: "/contact",
+  },
+  twitter: {
+    title: "Contact",
+    description: "Get in touch with Joel Fickson Ngozo.",
+  },
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 const links = [

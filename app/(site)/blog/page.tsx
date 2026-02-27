@@ -7,6 +7,20 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Thoughts on engineering, building companies, and technology in Africa by Joel Fickson Ngozo.",
+  openGraph: {
+    title: "Blog",
+    description:
+      "Thoughts on engineering, building companies, and technology in Africa by Joel Fickson Ngozo.",
+    url: "/blog",
+  },
+  twitter: {
+    title: "Blog",
+    description:
+      "Thoughts on engineering, building companies, and technology in Africa by Joel Fickson Ngozo.",
+  },
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 export default async function BlogPage() {

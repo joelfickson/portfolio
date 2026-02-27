@@ -1,8 +1,30 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { FEATURED_POSTS_QUERY, VENTURES_QUERY } from "@/sanity/lib/queries";
 import { BlogCard } from "@/components/blog-card";
 import { HeroScene } from "@/components/hero-scene";
+
+export const metadata: Metadata = {
+  title: "Joel Fickson Ngozo - Senior Engineer & Founder",
+  description:
+    "Senior full-stack engineer at CommerceTools and founder of Sekuire, Elior Health, and Vwaza. 10+ years building web, mobile, and desktop applications.",
+  openGraph: {
+    title: "Joel Fickson Ngozo - Senior Engineer & Founder",
+    description:
+      "Senior full-stack engineer at CommerceTools and founder of Sekuire, Elior Health, and Vwaza.",
+    url: "/",
+  },
+  twitter: {
+    title: "Joel Fickson Ngozo - Senior Engineer & Founder",
+    description:
+      "Senior full-stack engineer at CommerceTools and founder of Sekuire, Elior Health, and Vwaza.",
+  },
+  alternates: {
+    canonical: "/",
+  },
+};
 
 const ventures = [
   {
@@ -42,10 +64,20 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-stone-50 dark:to-stone-950" />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-20 md:pt-32 md:pb-28">
           <div className="animate-fade-in">
-            <div className="flex items-center gap-3 mb-10">
+            <div className="flex items-center gap-4 mb-10">
+              <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent-500/20 ring-offset-2 ring-offset-stone-50 dark:ring-offset-stone-950 flex-shrink-0">
+                <Image
+                  src="/og.jpg"
+                  alt="Joel Fickson Ngozo"
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-cover object-top"
+                  priority
+                />
+              </div>
               <div className="h-px w-8 gradient-line" />
               <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-600 dark:text-accent-400">
-                Founder & Engineer
+                Senior Engineer & Founder
               </p>
             </div>
           </div>
@@ -61,9 +93,9 @@ export default async function HomePage() {
             className="mt-8 max-w-lg text-lg text-stone-600 dark:text-stone-400 leading-relaxed"
             style={{ animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both" }}
           >
-            Building products that move Africa forward.
+            I build software that solves complex problems.
             <br />
-            From Malawi to the world, one line of code at a time.
+            From enterprise commerce to AI safety, across three continents.
           </p>
           <div
             className="mt-8 flex items-center gap-6"
