@@ -43,8 +43,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    creator: "@joaborun",
-    site: "@joaborun",
+    creator: "@joelfickson",
+    site: "@joelfickson",
     images: ["/og.jpg"],
   },
   robots: {
@@ -81,9 +81,9 @@ export default function SiteLayout({
               url: "https://joelfickson.com",
               jobTitle: "Founder & Software Engineer",
               sameAs: [
-                "https://github.com/joaborun",
+                "https://github.com/joelfickson",
                 "https://linkedin.com/in/joelfickson",
-                "https://x.com/joaborun",
+                "https://x.com/joelfickson",
               ],
             }),
           }}

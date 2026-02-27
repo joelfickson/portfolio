@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const links = [
   {
     label: "GitHub",
-    href: "https://github.com/joaborun",
+    href: "https://github.com/joelfickson",
     description: "Open source work and code",
   },
   {
@@ -30,7 +30,7 @@ const links = [
   },
   {
     label: "X / Twitter",
-    href: "https://x.com/joaborun",
+    href: "https://x.com/joelfickson",
     description: "Thoughts and updates",
   },
   {

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { PROJECTS_QUERY } from "@/sanity/lib/queries";
-import { ProjectCard } from "@/components/project-card";
+import { ProjectGrid } from "@/components/project-grid";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -22,30 +22,151 @@ export const metadata: Metadata = {
 
 const fallbackProjects = [
   {
-    _id: "pawapay",
-    name: "PawaPay PHP API",
+    _id: "pawapay-api",
+    name: "pawapay_api",
     description:
-      "PHP SDK for the PawaPay mobile money API. Enables seamless integration with African mobile payment systems.",
-    githubUrl: "https://github.com/joaborun/pawapay-php-api",
-    techStack: ["PHP", "REST API", "Mobile Money"],
+      "TypeScript implementation of the PawaPay payment gateway. Mobile money integration for African markets.",
+    githubUrl: "https://github.com/joelfickson/pawapay_api",
+    techStack: ["TypeScript", "Payments", "Mobile Money"],
+    featured: true,
+  },
+  {
+    _id: "pawapay-tutorial",
+    name: "pawapay-payment-tutorial",
+    description:
+      "Tutorial and reference implementation for integrating PawaPay widget payments into web applications.",
+    githubUrl: "https://github.com/joelfickson/pawapay-payment-tutorial",
+    techStack: ["TypeScript", "PawaPay", "Tutorial"],
+    featured: true,
+  },
+  {
+    _id: "nyasa-data-hub",
+    name: "NyasaDataHub",
+    description: "A data platform that collects, labels, and provides access to Malawi's data.",
+    githubUrl: "https://github.com/joelfickson/NyasaDataHub",
+    techStack: ["TypeScript", "Data Platform"],
+    featured: true,
+  },
+  {
+    _id: "zizo",
+    name: "zizo",
+    description:
+      "Zinthu Zothandiza - a JavaScript utility package with a wide range of helper functions.",
+    githubUrl: "https://github.com/joelfickson/zizo",
+    techStack: ["TypeScript", "Utilities"],
+    featured: true,
+  },
+  {
+    _id: "polana",
+    name: "Polana",
+    description: "A design system created for Tech Malawi.",
+    githubUrl: "https://github.com/joelfickson/Polana",
+    techStack: ["TypeScript", "Design System"],
     featured: true,
   },
   {
     _id: "afrimomo",
     name: "afrimomo",
-    description:
-      "Mobile money integration library for African payment providers. Unified interface for MTN MoMo, Airtel Money, and more.",
-    githubUrl: "https://github.com/joaborun/afrimomo",
-    techStack: ["JavaScript", "Node.js", "Fintech"],
+    description: "Mobile money integration library for African payment providers.",
+    githubUrl: "https://github.com/joelfickson/afrimomo",
+    techStack: ["TypeScript", "Fintech"],
     featured: true,
   },
   {
     _id: "r2-migration",
     name: "r2-aws-s3-migration",
+    description: "Simple Python tool for migrating files from Cloudflare R2 to AWS S3.",
+    githubUrl: "https://github.com/joelfickson/r2-aws-s3-migration",
+    techStack: ["Python", "Cloudflare", "AWS"],
+    featured: true,
+  },
+  {
+    _id: "blockchain-tx",
+    name: "blockchain-transaction-service",
+    description: "A service to check blockchain transaction status.",
+    githubUrl: "https://github.com/joelfickson/blockchain-transaction-service",
+    techStack: ["Python", "Blockchain"],
+    featured: true,
+  },
+  {
+    _id: "pawapay-flutter",
+    name: "pawapay_flutter",
+    description: "PawaPay Flutter SDK for mobile money payments in mobile apps.",
+    githubUrl: "https://github.com/joelfickson/pawapay_flutter",
+    techStack: ["Dart", "Flutter", "Payments"],
+    featured: true,
+  },
+  {
+    _id: "upload-to-cloud",
+    name: "upload-to-cloud",
+    description: "A library to upload files to the cloud.",
+    githubUrl: "https://github.com/joelfickson/upload-to-cloud",
+    techStack: ["TypeScript", "Cloud Storage"],
+    featured: true,
+  },
+  {
+    _id: "fhir-types",
+    name: "fhir-types",
     description:
-      "Tool for migrating files from AWS S3 to Cloudflare R2. Handles large-scale migrations with progress tracking.",
-    githubUrl: "https://github.com/joaborun/r2-aws-s3-migration",
-    techStack: ["TypeScript", "Cloudflare", "AWS"],
+      "FHIR type definitions for TypeScript. Typed interfaces for healthcare interoperability standards.",
+    githubUrl: "https://github.com/joelfickson/fhir-types",
+    techStack: ["TypeScript", "FHIR", "Healthcare"],
+    featured: true,
+  },
+  {
+    _id: "chipereganyu",
+    name: "chipereganyu-app",
+    description: "Monorepo for a Svelte frontend with a Rust backend.",
+    githubUrl: "https://github.com/joelfickson/chipereganyu-app",
+    techStack: ["Rust", "Svelte"],
+    featured: true,
+  },
+  {
+    _id: "js-array-rust",
+    name: "javascript-array-methods-in-rust",
+    description: "Implementing JavaScript array methods in Rust using vectors.",
+    githubUrl: "https://github.com/joelfickson/javascript-array-methods-in-rust",
+    techStack: ["Rust"],
+    featured: true,
+  },
+  {
+    _id: "go-learning",
+    name: "go-lang-learning",
+    description: "A journey learning Go - patterns, exercises, and mini-projects.",
+    githubUrl: "https://github.com/joelfickson/go-lang-learning",
+    techStack: ["Go"],
+    featured: true,
+  },
+  {
+    _id: "eli-portal",
+    name: "ELI-Student-Portal",
+    description: "English Language Institute student portal for managing courses and grades.",
+    githubUrl: "https://github.com/joelfickson/ELI-Student-Portal",
+    techStack: ["React", "Node.js"],
+    featured: true,
+  },
+  {
+    _id: "node-template",
+    name: "backend-node-template",
+    description: "Simple Node.js backend template for quick project bootstrapping.",
+    githubUrl: "https://github.com/joelfickson/backend-node-template",
+    techStack: ["TypeScript", "Node.js"],
+    featured: true,
+  },
+  {
+    _id: "posewerela",
+    name: "Posewerela",
+    description: "Pamalo Panga Poyesera Zinthu - a place for Rust experiments.",
+    githubUrl: "https://github.com/joelfickson/Posewerela",
+    techStack: ["Rust"],
+    featured: true,
+  },
+  {
+    _id: "php-rest-api",
+    name: "PHP-Rest-API",
+    description: "REST API built with PHP, MySQL, jQuery, and Bootstrap.",
+    githubUrl: "https://github.com/joelfickson/PHP-Rest-API",
+    techStack: ["PHP", "MySQL", "REST API"],
     featured: true,
   },
 ];
@@ -76,18 +197,11 @@ export default async function ProjectsPage() {
         className="text-lg text-stone-500 dark:text-stone-400 max-w-2xl mb-16 leading-relaxed"
         style={{ animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both" }}
       >
-        Tools and libraries I&apos;ve built, mostly focused on African fintech infrastructure and
-        developer experience.
+        Tools, libraries, and experiments I&apos;ve built - from payment integrations and data
+        platforms to design systems and blockchain services.
       </p>
 
-      <div
-        className="space-y-0"
-        style={{ animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both" }}
-      >
-        {projects.map((project: any, i: number) => (
-          <ProjectCard key={project._id} index={i} {...project} />
-        ))}
-      </div>
+      <ProjectGrid projects={projects} />
     </div>
   );
 }

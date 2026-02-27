@@ -84,18 +84,18 @@ export default function AboutPage() {
         className="grid md:grid-cols-[1fr,2fr] gap-12 md:gap-20 mb-28"
         style={{ animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both" }}
       >
-        <div className="relative">
-          <div className="aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 dark:bg-stone-900">
+        <div className="relative max-w-[200px]">
+          <div className="aspect-square rounded-2xl overflow-hidden bg-stone-100 dark:bg-stone-900">
             <Image
               src="/og.jpg"
               alt="Joel Fickson Ngozo"
-              width={600}
-              height={800}
+              width={400}
+              height={400}
               className="w-full h-full object-cover object-top"
               priority
             />
           </div>
-          <div className="absolute -bottom-3 -right-3 w-24 h-24 border-2 border-accent-500/20 rounded-2xl" />
+          <div className="absolute -bottom-2 -right-2 w-16 h-16 border-2 border-accent-500/20 rounded-2xl" />
         </div>
         <div className="space-y-6 text-stone-600 dark:text-stone-400 leading-[1.8]">
           <p>
