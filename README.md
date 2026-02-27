@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# joelfickson.com
+
+Personal website and blog for Joel Fickson Ngozo - technical founder, CEO, and full-stack engineer.
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router, TypeScript)
+- **Styling**: Tailwind CSS v4
+- **CMS**: Sanity v5 (embedded Studio at `/studio`)
+- **Linting/Formatting**: Biome
+- **Package Manager**: pnpm
+- **Deployment**: Vercel
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file:
 
-## Learn More
+```
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+app/
+  (site)/          # Public-facing pages (home, about, career, blog, etc.)
+  (studio)/        # Embedded Sanity Studio at /studio
+  globals.css      # Tailwind v4 theme and global styles
+components/        # Shared UI components
+sanity/
+  schemas/         # Sanity document schemas
+  lib/             # Sanity client, image builder, GROQ queries
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Routes
 
-## Deploy on Vercel
+| Route | Description |
+|-------|-------------|
+| `/` | Home - hero, venture highlights, latest posts |
+| `/about` | Bio and career narrative |
+| `/career` | Work experience timeline |
+| `/ventures` | Sekuire, Elior Health, Vwaza |
+| `/projects` | Open source and technical projects |
+| `/blog` | Blog post listing |
+| `/blog/[slug]` | Individual blog post |
+| `/contact` | Social links and email |
+| `/studio` | Sanity Studio (content management) |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm dev        # Start dev server
+pnpm build      # Production build
+pnpm start      # Start production server
+pnpm lint       # Check with Biome
+pnpm lint:fix   # Auto-fix lint issues
+pnpm format     # Format with Biome
+```
