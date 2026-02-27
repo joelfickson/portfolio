@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: var(--font-syne), "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-outfit), "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-syne), "Syne", ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace, monospace;
 
@@ -15,9 +15,9 @@
   --color-accent-600: #d97706;
   --color-accent-700: #b45309;
 
-  --animate-fade-in: fade-in 0.7s ease-out both;
-  --animate-slide-up: slide-up 0.7s ease-out both;
-  --animate-slide-up-sm: slide-up-sm 0.5s ease-out both;
+  --animate-fade-in: fade-in 0.6s ease-out both;
+  --animate-slide-up: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-slide-up-sm: slide-up-sm 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes fade-in {
@@ -32,7 +32,7 @@
 @keyframes slide-up {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -43,7 +43,7 @@
 @keyframes slide-up-sm {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -58,4 +58,45 @@ html {
 ::selection {
   background-color: #f59e0b;
   color: #000;
+}
+
+.dot-grid {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    var(--dot-color, rgba(0, 0, 0, 0.06)) 0.5px,
+    transparent 0
+  );
+  background-size: 24px 24px;
+}
+
+:where(.dark, .dark *) .dot-grid {
+  --dot-color: rgba(255, 255, 255, 0.04);
+}
+
+.noise {
+  position: relative;
+  isolation: isolate;
+}
+
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+:where(.dark, .dark *) .noise::after {
+  opacity: 0.04;
+}
+
+.gradient-line {
+  background: linear-gradient(to right, #f59e0b, #d97706, transparent);
+}
+
+.gradient-line-v {
+  background: linear-gradient(to bottom, #f59e0b, transparent);
 }

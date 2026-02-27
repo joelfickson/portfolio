@@ -45,32 +45,35 @@ export default async function ProjectsPage() {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-6 pt-24 pb-16">
+    <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-16">
       <div className="animate-fade-in">
-        <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-600 dark:text-accent-400 mb-6">
-          Projects
-        </p>
+        <div className="flex items-center gap-3 mb-8">
+          <div className="h-px w-8 gradient-line" />
+          <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-600 dark:text-accent-400">
+            Projects
+          </p>
+        </div>
       </div>
       <h1
-        className="font-display text-5xl md:text-6xl text-stone-900 dark:text-stone-100 mb-6 leading-tight"
-        style={{ animation: "slide-up 0.7s ease-out 0.1s both" }}
+        className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-stone-900 dark:text-stone-100 mb-6 leading-[1.05]"
+        style={{ animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both" }}
       >
         Open Source &amp; Side Projects
       </h1>
       <p
-        className="text-lg text-stone-600 dark:text-stone-400 max-w-2xl mb-16 leading-relaxed"
-        style={{ animation: "slide-up 0.7s ease-out 0.2s both" }}
+        className="text-lg text-stone-500 dark:text-stone-400 max-w-2xl mb-16 leading-relaxed"
+        style={{ animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both" }}
       >
         Tools and libraries I&apos;ve built, mostly focused on African fintech infrastructure and
         developer experience.
       </p>
 
       <div
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        style={{ animation: "slide-up 0.7s ease-out 0.3s both" }}
+        className="space-y-0"
+        style={{ animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both" }}
       >
-        {projects.map((project: any) => (
-          <ProjectCard key={project._id} {...project} />
+        {projects.map((project: any, i: number) => (
+          <ProjectCard key={project._id} index={i} {...project} />
         ))}
       </div>
     </div>

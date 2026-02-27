@@ -9,23 +9,62 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-stone-200 dark:border-stone-800 mt-32">
-      <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-        <p className="text-sm text-stone-500 dark:text-stone-500">
-          &copy; {new Date().getFullYear()} Joel Fickson Ngozo
-        </p>
-        <div className="flex items-center gap-6">
-          {socials.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-stone-500 dark:text-stone-500 hover:text-accent-600 dark:hover:text-accent-400 transition-colors"
+    <footer className="mt-32 border-t border-stone-200 dark:border-stone-800">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+        <div className="grid md:grid-cols-3 gap-12 md:gap-8">
+          <div>
+            <Link
+              href="/"
+              className="font-display font-bold text-lg text-stone-900 dark:text-stone-100"
             >
-              {s.label}
-            </a>
-          ))}
+              JFN<span className="text-accent-500">.</span>
+            </Link>
+            <p className="mt-3 text-sm text-stone-500 dark:text-stone-500 leading-relaxed max-w-xs">
+              Building products that move Africa forward. From Malawi to the world.
+            </p>
+          </div>
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-400 dark:text-stone-600 mb-4">
+              Navigate
+            </p>
+            <div className="grid grid-cols-2 gap-2">
+              {["About", "Career", "Ventures", "Projects", "Blog", "Contact"].map((item) => (
+                <Link
+                  key={item}
+                  href={`/${item.toLowerCase()}`}
+                  className="text-sm text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 transition-colors"
+                >
+                  {item}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-400 dark:text-stone-600 mb-4">
+              Elsewhere
+            </p>
+            <div className="flex flex-col gap-2">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-stone-500 hover:text-accent-600 dark:hover:text-accent-400 transition-colors"
+                >
+                  {s.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="mt-16 pt-8 border-t border-stone-100 dark:border-stone-900 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-stone-400 dark:text-stone-600">
+            &copy; {new Date().getFullYear()} Joel Fickson Ngozo
+          </p>
+          <p className="text-xs font-mono text-stone-300 dark:text-stone-700">
+            Lilongwe / San Francisco / The Internet
+          </p>
         </div>
       </div>
     </footer>

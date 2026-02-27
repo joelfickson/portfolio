@@ -54,7 +54,7 @@ export default async function BlogPostPage({ params }: Props) {
       <div className="animate-fade-in">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 font-mono text-xs tracking-wider text-stone-500 hover:text-accent-600 dark:hover:text-accent-400 transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-xs text-stone-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors mb-10"
         >
           <svg
             width="14"
@@ -70,9 +70,9 @@ export default async function BlogPostPage({ params }: Props) {
         </Link>
       </div>
 
-      <header style={{ animation: "slide-up 0.7s ease-out 0.1s both" }}>
+      <header style={{ animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both" }}>
         {post.categories && post.categories.length > 0 && (
-          <div className="flex gap-2 mb-4">
+          <div className="flex gap-3 mb-4">
             {post.categories.map((cat: string) => (
               <span
                 key={cat}
@@ -83,14 +83,14 @@ export default async function BlogPostPage({ params }: Props) {
             ))}
           </div>
         )}
-        <h1 className="font-display text-4xl md:text-5xl text-stone-900 dark:text-stone-100 leading-tight mb-6">
+        <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-stone-900 dark:text-stone-100 leading-[1.1] mb-6">
           {post.title}
         </h1>
-        <div className="flex items-center gap-4 text-sm text-stone-500 mb-10">
+        <div className="flex items-center gap-4 text-sm text-stone-400 dark:text-stone-500 mb-12">
           {post.author?.name && <span>{post.author.name}</span>}
           {date && (
             <>
-              <span className="w-1 h-1 rounded-full bg-stone-400" />
+              <span className="w-1 h-1 rounded-full bg-stone-300 dark:bg-stone-700" />
               <time className="font-mono text-xs">{date}</time>
             </>
           )}
@@ -99,8 +99,8 @@ export default async function BlogPostPage({ params }: Props) {
 
       {post.mainImage?.asset && (
         <div
-          className="aspect-[16/9] rounded-lg overflow-hidden mb-12 bg-stone-100 dark:bg-stone-900"
-          style={{ animation: "slide-up 0.7s ease-out 0.2s both" }}
+          className="aspect-[16/9] rounded-xl overflow-hidden mb-14 bg-stone-100 dark:bg-stone-900"
+          style={{ animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both" }}
         >
           <Image
             src={urlFor(post.mainImage).width(1200).height(675).url()}
@@ -113,7 +113,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       )}
 
-      <div style={{ animation: "slide-up 0.7s ease-out 0.3s both" }}>
+      <div style={{ animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both" }}>
         {post.body && <PortableText value={post.body} />}
       </div>
     </article>

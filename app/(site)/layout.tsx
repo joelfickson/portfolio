@@ -50,7 +50,7 @@ export default function SiteLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${syne.variable} ${outfit.variable} ${jetbrainsMono.variable} font-sans bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100 antialiased`}
+        className={`${syne.variable} ${outfit.variable} ${jetbrainsMono.variable} font-sans bg-stone-50 dark:bg-stone-950 text-stone-800 dark:text-stone-200 antialiased`}
       >
         <ThemeProvider>
           <Navigation />
