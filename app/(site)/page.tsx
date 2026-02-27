@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { FEATURED_POSTS_QUERY, VENTURES_QUERY } from "@/sanity/lib/queries";
-import { BlogCard } from "@/components/blog-card";
+import { BlogCardFeaturedHome } from "@/components/blog-card";
 import { HeroScene } from "@/components/hero-scene";
 
 export const metadata: Metadata = {
@@ -227,10 +227,33 @@ export default async function HomePage() {
               From the Blog
             </span>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post: any) => (
-              <BlogCard key={post._id} {...post} />
-            ))}
+          <div className="grid md:grid-cols-2 gap-4">
+            {posts[0] && (
+              <div className="md:row-span-2">
+                <BlogCardFeaturedHome {...posts[0]} />
+              </div>
+            )}
+            {posts[1] && <BlogCardFeaturedHome {...posts[1]} />}
+            {posts[2] && <BlogCardFeaturedHome {...posts[2]} />}
+          </div>
+          <div className="mt-8 flex justify-center">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-accent-600 dark:hover:text-accent-400 transition-colors group"
+            >
+              View all posts
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="transition-transform group-hover:translate-x-1"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
         </section>
       )}
