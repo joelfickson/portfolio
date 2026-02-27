@@ -71,10 +71,10 @@ export default function ContactPage() {
               Email
             </p>
             <a
-              href="mailto:joel@joelfickson.com"
+              href="mailto:hi@joelfickson.com"
               className="font-display font-bold text-2xl md:text-3xl text-stone-900 dark:text-stone-100 hover:text-accent-600 dark:hover:text-accent-400 transition-colors"
             >
-              joel@joelfickson.com
+              hi@joelfickson.com
             </a>
           </div>
         </div>
