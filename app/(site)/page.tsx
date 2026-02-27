@@ -2,6 +2,7 @@ import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { FEATURED_POSTS_QUERY, VENTURES_QUERY } from "@/sanity/lib/queries";
 import { BlogCard } from "@/components/blog-card";
+import { HeroScene } from "@/components/hero-scene";
 
 const ventures = [
   {
@@ -36,6 +37,7 @@ export default async function HomePage() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden">
+        <HeroScene />
         <div className="absolute inset-0 dot-grid opacity-60 dark:opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-stone-50 dark:to-stone-950" />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-20 md:pt-32 md:pb-28">
