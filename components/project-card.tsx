@@ -22,7 +22,7 @@ export function ProjectCard({
   return (
     <Wrapper
       {...wrapperProps}
-      className="group flex flex-col justify-between p-5 rounded-xl border border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 transition-all duration-200"
+      className="group flex flex-col justify-between p-5 rounded-xl border border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 hover:bg-stone-100/30 dark:hover:bg-stone-900/40 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950"
     >
       <div>
         <div className="flex items-center justify-between mb-2">
@@ -31,6 +31,7 @@ export function ProjectCard({
           </h3>
           {githubUrl && (
             <svg
+              aria-hidden="true"
               width="14"
               height="14"
               viewBox="0 0 24 24"
@@ -50,7 +51,7 @@ export function ProjectCard({
           {techStack.map((tech) => (
             <span
               key={tech}
-              className="text-[10px] font-mono px-1.5 py-0.5 rounded border border-stone-150 dark:border-stone-800 text-stone-400 dark:text-stone-600"
+              className="text-[10px] font-mono px-1.5 py-0.5 rounded border border-stone-200 dark:border-stone-800 text-stone-400 dark:text-stone-600"
             >
               {tech}
             </span>

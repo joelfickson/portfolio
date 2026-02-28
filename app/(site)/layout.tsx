@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import { Syne, Outfit, JetBrains_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
+import { ThemeProvider } from "@/components/theme-provider";
+import type { Metadata } from "next";
+import { JetBrains_Mono, Outfit, Syne } from "next/font/google";
 import "../globals.css";
 
 const syne = Syne({
@@ -90,7 +90,11 @@ export default function SiteLayout({
         />
         <ThemeProvider>
           <Navigation />
-          <main className="min-h-screen pt-16">{children}</main>
+          <main className="site-shell min-h-screen pt-16 overflow-x-clip">
+            <div className="ambient-orb ambient-orb-a" />
+            <div className="ambient-orb ambient-orb-b" />
+            <div className="relative z-10">{children}</div>
+          </main>
           <Footer />
         </ThemeProvider>
       </body>

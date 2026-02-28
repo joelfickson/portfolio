@@ -47,11 +47,13 @@ export function BlogFilter({ posts }: { posts: Post[] }) {
             Filter
           </span>
           <button
+            type="button"
             onClick={() => setActive(null)}
-            className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
+            aria-pressed={active === null}
+            className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950 ${
               active === null
-                ? "bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900"
-                : "bg-stone-100 dark:bg-stone-900 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800"
+                ? "bg-stone-900 dark:bg-stone-100 border-stone-900 dark:border-stone-100 text-stone-100 dark:text-stone-900 shadow-sm"
+                : "bg-stone-100 dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:border-stone-300 dark:hover:border-stone-700"
             }`}
           >
             All
@@ -59,11 +61,13 @@ export function BlogFilter({ posts }: { posts: Post[] }) {
           {allCategories.map((cat) => (
             <button
               key={cat}
+              type="button"
               onClick={() => setActive(active === cat ? null : cat)}
-              className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer ${
+              aria-pressed={active === cat}
+              className={`shrink-0 px-3.5 py-1.5 rounded-full text-xs font-medium border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950 ${
                 active === cat
-                  ? "bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900"
-                  : "bg-stone-100 dark:bg-stone-900 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800"
+                  ? "bg-stone-900 dark:bg-stone-100 border-stone-900 dark:border-stone-100 text-stone-100 dark:text-stone-900 shadow-sm"
+                  : "bg-stone-100 dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-500 dark:text-stone-400 hover:bg-stone-200 dark:hover:bg-stone-800 hover:border-stone-300 dark:hover:border-stone-700"
               }`}
             >
               {cat}

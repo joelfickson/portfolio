@@ -17,13 +17,14 @@ const links = [
 export function Navigation() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-stone-50/80 dark:bg-stone-950/80 backdrop-blur-xl">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-stone-50/80 dark:bg-stone-950/80 backdrop-blur-xl border-b border-stone-200/40 dark:border-stone-800/40">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="font-display font-bold text-lg tracking-tight text-stone-900 dark:text-stone-100 hover:text-accent-600 dark:hover:text-accent-400 transition-colors"
+          className="font-display font-bold text-lg tracking-tight text-stone-900 dark:text-stone-100 hover:text-accent-600 dark:hover:text-accent-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950 rounded-sm"
         >
           JFN
           <span className="text-accent-500">.</span>
@@ -31,12 +32,13 @@ export function Navigation() {
 
         <div className="hidden md:flex items-center gap-1">
           {links.map((link) => {
-            const active = pathname === link.href || pathname.startsWith(link.href + "/");
+            const active = isActive(link.href);
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`group relative px-3 py-1.5 text-sm transition-colors ${
+                aria-current={active ? "page" : undefined}
+                className={`group relative px-3 py-1.5 text-sm rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950 ${
                   active
                     ? "text-accent-600 dark:text-accent-400"
                     : "text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
@@ -46,6 +48,13 @@ export function Navigation() {
                   {link.num}
                 </span>
                 {link.label}
+                <span
+                  className={`absolute left-3 right-3 -bottom-[6px] h-[2px] rounded-full transition-all duration-200 ${
+                    active
+                      ? "bg-accent-500 opacity-100"
+                      : "bg-stone-300 dark:bg-stone-700 opacity-0 group-hover:opacity-60"
+                  }`}
+                />
               </Link>
             );
           })}
@@ -57,12 +66,14 @@ export function Navigation() {
         <div className="flex items-center gap-3 md:hidden">
           <ThemeToggle />
           <button
+            type="button"
             onClick={() => setOpen(!open)}
-            className="w-9 h-9 flex items-center justify-center text-stone-600 dark:text-stone-400 cursor-pointer"
+            className="w-9 h-9 flex items-center justify-center text-stone-600 dark:text-stone-400 cursor-pointer rounded-full hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950"
             aria-label="Toggle menu"
           >
             {open ? (
               <svg
+                aria-hidden="true"
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
@@ -75,6 +86,7 @@ export function Navigation() {
               </svg>
             ) : (
               <svg
+                aria-hidden="true"
                 width="20"
                 height="20"
                 viewBox="0 0 24 24"
@@ -95,17 +107,18 @@ export function Navigation() {
         <div className="md:hidden bg-stone-50/95 dark:bg-stone-950/95 backdrop-blur-xl border-t border-stone-200/50 dark:border-stone-800/50">
           <div className="px-6 py-6 flex flex-col gap-1">
             {links.map((link) => {
-              const active = pathname === link.href;
+              const active = isActive(link.href);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className={`flex items-center gap-3 py-2.5 transition-colors ${
+                  className={`flex items-center gap-3 py-2.5 px-2 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950 ${
                     active
-                      ? "text-accent-600 dark:text-accent-400"
-                      : "text-stone-600 dark:text-stone-400"
+                      ? "text-accent-600 dark:text-accent-400 bg-accent-500/10"
+                      : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900"
                   }`}
+                  aria-current={active ? "page" : undefined}
                 >
                   <span className="font-mono text-[10px] text-stone-300 dark:text-stone-700 w-5">
                     {link.num}

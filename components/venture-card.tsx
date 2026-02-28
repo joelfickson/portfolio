@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
 
 type VentureCardProps = {
   name: string;
@@ -29,9 +29,10 @@ export function VentureCard({
     return (
       <Wrapper
         {...wrapperProps}
-        className="group relative block p-8 md:p-10 rounded-2xl bg-stone-900 dark:bg-stone-100 text-stone-100 dark:text-stone-900 overflow-hidden noise"
+        className="group relative block p-8 md:p-10 rounded-2xl border border-stone-200/70 dark:border-stone-800/70 bg-stone-950 dark:bg-stone-100 text-stone-100 dark:text-stone-900 overflow-hidden shadow-[0_32px_90px_-58px_rgba(28,25,23,0.85)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_32px_90px_-50px_rgba(28,25,23,0.8)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950"
       >
         <div className="absolute inset-0 dot-grid opacity-10 [--dot-color:rgba(255,255,255,0.12)]" />
+        <div className="absolute -top-8 -right-8 w-36 h-36 rounded-full bg-accent-400/20 blur-3xl" />
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-4">
             {status === "active" && (
@@ -67,6 +68,7 @@ export function VentureCard({
             <div className="mt-6 text-sm text-accent-400 group-hover:text-accent-300 transition-colors flex items-center gap-2">
               Visit
               <svg
+                aria-hidden="true"
                 width="14"
                 height="14"
                 viewBox="0 0 24 24"
@@ -87,7 +89,7 @@ export function VentureCard({
   return (
     <Wrapper
       {...wrapperProps}
-      className="group block p-6 md:p-8 rounded-2xl border border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 transition-all duration-300"
+      className="group block p-6 md:p-8 rounded-2xl border border-stone-200/80 dark:border-stone-800/80 bg-stone-100/45 dark:bg-stone-900/45 hover:border-stone-300 dark:hover:border-stone-700 transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950"
     >
       <div className="flex items-start gap-4 mb-4">
         {logo && (
@@ -122,6 +124,7 @@ export function VentureCard({
         <div className="mt-4 text-xs text-stone-400 group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors flex items-center gap-1">
           Visit
           <svg
+            aria-hidden="true"
             width="12"
             height="12"
             viewBox="0 0 24 24"

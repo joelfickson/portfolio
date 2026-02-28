@@ -1,6 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
+import Link from "next/link";
 
 type BlogCardProps = {
   title: string;
@@ -69,7 +69,7 @@ function FeaturedCard({ title, slug, excerpt, publishedAt, mainImage, categories
   return (
     <Link
       href={`/blog/${slug.current}`}
-      className="group relative block rounded-2xl overflow-hidden bg-stone-900 dark:bg-stone-100"
+      className="group relative block rounded-2xl overflow-hidden border border-stone-200/70 dark:border-stone-800/70 bg-stone-900 dark:bg-stone-100 shadow-[0_28px_80px_-60px_rgba(28,25,23,0.75)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_80px_-48px_rgba(28,25,23,0.72)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950"
     >
       <div className="grid lg:grid-cols-[1.2fr,1fr]">
         {mainImage?.asset ? (
@@ -125,6 +125,7 @@ function FeaturedCard({ title, slug, excerpt, publishedAt, mainImage, categories
           <span className="inline-flex items-center gap-2 text-sm text-accent-400 group-hover:text-accent-300 transition-colors">
             Read article
             <svg
+              aria-hidden="true"
               width="16"
               height="16"
               viewBox="0 0 24 24"
@@ -165,7 +166,7 @@ function EditorialCard({
   return (
     <Link
       href={`/blog/${slug.current}`}
-      className="group relative flex gap-5 py-7 border-b border-stone-200/60 dark:border-stone-800/60 last:border-b-0"
+      className="group relative flex gap-5 py-7 px-3 -mx-3 rounded-xl border-b border-stone-200/60 dark:border-stone-800/60 last:border-b-0 hover:bg-stone-100/55 dark:hover:bg-stone-900/55 transition-colors"
     >
       <div
         className={`hidden sm:block absolute left-0 top-8 bottom-8 w-[3px] rounded-full bg-gradient-to-b ${stripe} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
@@ -245,7 +246,7 @@ export function BlogCardFeaturedHome({
   return (
     <Link
       href={`/blog/${slug.current}`}
-      className="group relative block rounded-xl overflow-hidden bg-stone-100 dark:bg-stone-900 h-full"
+      className="group relative block rounded-xl overflow-hidden border border-stone-200/70 dark:border-stone-800/70 bg-stone-100 dark:bg-stone-900 h-full shadow-[0_20px_60px_-50px_rgba(28,25,23,0.75)] transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950"
     >
       {mainImage?.asset ? (
         <div className="absolute inset-0">

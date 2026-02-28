@@ -30,6 +30,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
       <div className="mb-8">
         <div className="relative max-w-sm">
           <svg
+            aria-hidden="true"
             width="16"
             height="16"
             viewBox="0 0 24 24"
@@ -46,7 +47,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
             placeholder="Search by name, description, or tech..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 text-sm bg-transparent border border-stone-200 dark:border-stone-800 rounded-lg text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-600 focus:outline-none focus:border-accent-500 dark:focus:border-accent-500 transition-colors"
+            className="w-full pl-10 pr-4 py-2.5 text-sm bg-transparent border border-stone-200 dark:border-stone-800 rounded-lg text-stone-900 dark:text-stone-100 placeholder:text-stone-400 dark:placeholder:text-stone-600 focus:outline-none focus:border-accent-500 dark:focus:border-accent-500 focus-visible:ring-2 focus-visible:ring-accent-500/35 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950 transition-colors"
           />
         </div>
       </div>
