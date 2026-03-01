@@ -67,7 +67,7 @@ export default async function HomePage() {
             <div className="flex items-center gap-4 mb-10">
               <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent-500/20 ring-offset-2 ring-offset-stone-50 dark:ring-offset-stone-950 flex-shrink-0">
                 <Image
-                  src="/og.jpg"
+                  src="/og.jpeg"
                   alt="Joel Fickson Ngozo"
                   width={48}
                   height={48}

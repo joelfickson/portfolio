@@ -87,7 +87,7 @@ export default function AboutPage() {
         <div className="relative max-w-[200px]">
           <div className="aspect-square rounded-2xl overflow-hidden bg-stone-100 dark:bg-stone-900">
             <Image
-              src="/og.jpg"
+              src="/og.jpeg"
               alt="Joel Fickson Ngozo"
               width={400}
               height={400}
