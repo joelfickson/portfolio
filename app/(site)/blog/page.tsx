@@ -3,6 +3,8 @@ import { client } from "@/sanity/lib/client";
 import { POSTS_QUERY } from "@/sanity/lib/queries";
 import { BlogFilter } from "@/components/blog-filter";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Blog",
   description:

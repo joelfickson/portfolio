@@ -6,6 +6,8 @@ import { FEATURED_POSTS_QUERY, VENTURES_QUERY } from "@/sanity/lib/queries";
 import { BlogCardFeaturedHome } from "@/components/blog-card";
 import { HeroScene } from "@/components/hero-scene";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Joel Fickson Ngozo - Senior Engineer & Founder",
   description:

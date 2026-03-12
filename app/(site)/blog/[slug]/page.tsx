@@ -9,6 +9,9 @@ import { PortableText } from "@/components/portable-text";
 import { ReadingProgress } from "@/components/reading-progress";
 import { BlogCard } from "@/components/blog-card";
 
+export const revalidate = 60;
+export const dynamicParams = true;
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
