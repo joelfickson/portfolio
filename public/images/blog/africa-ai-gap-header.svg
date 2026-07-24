@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Africa's AI Gap - Blog Header">
+  <title>Africa's AI Gap: Infrastructure, Policy, and the Long Road to Frontier Models</title>
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e1a"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="circuit-glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="terrain-fade" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#d97706" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="gap-glow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#ef4444" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#ef4444" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#ef4444" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="left-clip">
+      <rect x="0" y="0" width="594" height="630"/>
+    </clipPath>
+    <clipPath id="right-clip">
+      <rect x="606" y="0" width="594" height="630"/>
+    </clipPath>
+    <filter id="soft-glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg-grad)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.04" stroke="#fff" stroke-width="0.5">
+    <line x1="0" y1="0" x2="0" y2="630"/><line x1="40" y1="0" x2="40" y2="630"/>
+    <line x1="80" y1="0" x2="80" y2="630"/><line x1="120" y1="0" x2="120" y2="630"/>
+    <line x1="160" y1="0" x2="160" y2="630"/><line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="240" y1="0" x2="240" y2="630"/><line x1="280" y1="0" x2="280" y2="630"/>
+    <line x1="320" y1="0" x2="320" y2="630"/><line x1="360" y1="0" x2="360" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/><line x1="440" y1="0" x2="440" y2="630"/>
+    <line x1="480" y1="0" x2="480" y2="630"/><line x1="520" y1="0" x2="520" y2="630"/>
+    <line x1="560" y1="0" x2="560" y2="630"/><line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="640" y1="0" x2="640" y2="630"/><line x1="680" y1="0" x2="680" y2="630"/>
+    <line x1="720" y1="0" x2="720" y2="630"/><line x1="760" y1="0" x2="760" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/><line x1="840" y1="0" x2="840" y2="630"/>
+    <line x1="880" y1="0" x2="880" y2="630"/><line x1="920" y1="0" x2="920" y2="630"/>
+    <line x1="960" y1="0" x2="960" y2="630"/><line x1="1000" y1="0" x2="1000" y2="630"/>
+    <line x1="1040" y1="0" x2="1040" y2="630"/><line x1="1080" y1="0" x2="1080" y2="630"/>
+    <line x1="1120" y1="0" x2="1120" y2="630"/><line x1="1160" y1="0" x2="1160" y2="630"/>
+    <line x1="0" y1="40" x2="1200" y2="40"/><line x1="0" y1="80" x2="1200" y2="80"/>
+    <line x1="0" y1="120" x2="1200" y2="120"/><line x1="0" y1="160" x2="1200" y2="160"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/><line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="280" x2="1200" y2="280"/><line x1="0" y1="320" x2="1200" y2="320"/>
+    <line x1="0" y1="360" x2="1200" y2="360"/><line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="440" x2="1200" y2="440"/><line x1="0" y1="480" x2="1200" y2="480"/>
+    <line x1="0" y1="520" x2="1200" y2="520"/><line x1="0" y1="560" x2="1200" y2="560"/>
+    <line x1="0" y1="600" x2="1200" y2="600"/>
+  </g>
+
+  <!-- LEFT SIDE: Circuit/digital pattern (representing AI/digital world) -->
+  <g clip-path="url(#left-clip)" opacity="0.15">
+    <!-- Circuit traces -->
+    <g stroke="#6366f1" stroke-width="1.5" fill="none" opacity="0.7">
+      <path d="M80,200 H200 V280 H320 V200 H400"/>
+      <path d="M120,320 H240 V400 H360"/>
+      <path d="M160,160 V240 H280 V160 H400 V240"/>
+      <path d="M200,400 H320 V480 H440"/>
+      <path d="M80,440 H160 V360 H280"/>
+      <path d="M240,120 H360 V200"/>
+      <path d="M320,440 V520 H440 V440 H520"/>
+      <path d="M400,280 H520 V360 H440"/>
+    </g>
+    <!-- Circuit nodes -->
+    <g fill="#6366f1" opacity="0.6">
+      <circle cx="200" cy="200" r="4"/><circle cx="320" cy="280" r="4"/>
+      <circle cx="400" cy="200" r="3"/><circle cx="240" cy="320" r="4"/>
+      <circle cx="360" cy="400" r="3"/><circle cx="280" cy="160" r="3"/>
+      <circle cx="160" cy="240" r="3"/><circle cx="440" cy="480" r="4"/>
+      <circle cx="320" cy="440" r="3"/><circle cx="520" cy="360" r="4"/>
+      <circle cx="80" cy="440" r="3"/><circle cx="360" cy="200" r="3"/>
+    </g>
+    <!-- Bright active nodes -->
+    <g fill="#818cf8" filter="url(#soft-glow)">
+      <circle cx="320" cy="280" r="6" opacity="0.5"/>
+      <circle cx="240" cy="320" r="5" opacity="0.4"/>
+      <circle cx="440" cy="480" r="5" opacity="0.3"/>
+    </g>
+  </g>
+
+  <!-- RIGHT SIDE: Sparse, disconnected terrain lines (representing infrastructure gaps) -->
+  <g clip-path="url(#right-clip)" opacity="0.12">
+    <!-- Terrain/topographic lines - sparse, broken -->
+    <g stroke="#d97706" stroke-width="1" fill="none" opacity="0.6">
+      <path d="M650,180 Q700,170 740,190 Q780,210 800,195" stroke-dasharray="4,8"/>
+      <path d="M700,280 Q750,260 800,275" stroke-dasharray="3,12"/>
+      <path d="M660,380 Q710,370 730,390" stroke-dasharray="5,10"/>
+      <path d="M750,350 Q800,340 830,360 Q860,380 900,365" stroke-dasharray="4,8"/>
+      <path d="M680,460 Q720,445 760,460" stroke-dasharray="3,15"/>
+      <path d="M850,240 Q890,225 920,240 Q950,255 980,240" stroke-dasharray="4,8"/>
+      <path d="M900,420 Q940,410 970,425" stroke-dasharray="5,12"/>
+      <path d="M820,500 Q860,490 890,505" stroke-dasharray="3,10"/>
+    </g>
+    <!-- Sparse nodes - few, dim -->
+    <g fill="#d97706" opacity="0.4">
+      <circle cx="740" cy="190" r="3"/>
+      <circle cx="800" cy="275" r="2.5"/>
+      <circle cx="830" cy="360" r="3"/>
+      <circle cx="920" cy="240" r="2.5"/>
+      <circle cx="680" cy="460" r="2"/>
+    </g>
+  </g>
+
+  <!-- THE GAP - central fissure -->
+  <rect x="594" y="0" width="12" height="630" fill="url(#gap-glow)"/>
+  <!-- Gap edge lines -->
+  <line x1="594" y1="0" x2="594" y2="630" stroke="#ef4444" stroke-width="0.5" opacity="0.4"/>
+  <line x1="606" y1="0" x2="606" y2="630" stroke="#ef4444" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- Stylized Africa silhouette - centered, subtle -->
+  <g transform="translate(480, 100)" opacity="0.08" fill="#fff">
+    <path d="M120,0 C125,5 135,8 140,15 C148,28 155,35 158,50 C162,68 170,80 175,95
+             C178,105 185,115 188,130 C190,140 195,155 192,170 C188,185 182,200 178,215
+             C175,225 180,240 185,255 C190,270 195,285 192,300 C188,315 180,325 172,340
+             C165,355 155,365 148,375 C140,385 130,395 125,405 C122,412 118,420 112,425
+             C105,430 95,428 88,422 C80,415 72,405 68,395 C62,380 55,365 52,350
+             C48,335 42,320 40,305 C38,290 40,275 45,260 C48,248 52,235 50,220
+             C48,205 42,190 38,175 C35,162 32,148 35,135 C38,120 45,108 52,95
+             C58,82 65,70 72,58 C80,45 90,32 98,20 C105,10 112,5 120,0 Z"/>
+  </g>
+
+  <!-- Data flow indicators: left side has flowing data, right side has broken/missing flows -->
+  <!-- Left: active data streams -->
+  <g opacity="0.25">
+    <line x1="100" y1="315" x2="560" y2="315" stroke="#6366f1" stroke-width="0.5" stroke-dasharray="2,4"/>
+    <line x1="150" y1="295" x2="540" y2="295" stroke="#6366f1" stroke-width="0.5" stroke-dasharray="2,4"/>
+    <line x1="120" y1="335" x2="550" y2="335" stroke="#6366f1" stroke-width="0.5" stroke-dasharray="2,4"/>
+  </g>
+  <!-- Right: broken data streams -->
+  <g opacity="0.12">
+    <line x1="640" y1="315" x2="750" y2="315" stroke="#d97706" stroke-width="0.5" stroke-dasharray="2,8"/>
+    <line x1="800" y1="315" x2="850" y2="315" stroke="#d97706" stroke-width="0.5" stroke-dasharray="2,8" opacity="0.5"/>
+    <line x1="660" y1="335" x2="720" y2="335" stroke="#d97706" stroke-width="0.5" stroke-dasharray="2,8"/>
+  </g>
+
+  <!-- Stats bar at bottom -->
+  <rect x="0" y="570" width="1200" height="60" fill="#000" opacity="0.4"/>
+  <g fill="#94a3b8" font-size="11" font-family="system-ui, -apple-system, sans-serif" letter-spacing="0.5">
+    <text x="80" y="606" text-anchor="middle">
+      <tspan fill="#6366f1" font-size="16" font-weight="700">0.89%</tspan>
+      <tspan dx="6" fill="#64748b" font-size="10">of global AI research</tspan>
+    </text>
+    <text x="350" y="606" text-anchor="middle">
+      <tspan fill="#ef4444" font-size="16" font-weight="700">&lt;1%</tspan>
+      <tspan dx="6" fill="#64748b" font-size="10">of data center capacity</tspan>
+    </text>
+    <text x="620" y="606" text-anchor="middle">
+      <tspan fill="#d97706" font-size="16" font-weight="700">600M</tspan>
+      <tspan dx="6" fill="#64748b" font-size="10">without electricity</tspan>
+    </text>
+    <text x="880" y="606" text-anchor="middle">
+      <tspan fill="#10b981" font-size="16" font-weight="700">207</tspan>
+      <tspan dx="6" fill="#64748b" font-size="10">AI startups in Africa</tspan>
+    </text>
+    <text x="1100" y="606" text-anchor="middle">
+      <tspan fill="#818cf8" font-size="16" font-weight="700">$1T</tspan>
+      <tspan dx="6" fill="#64748b" font-size="10">projected GDP impact</tspan>
+    </text>
+  </g>
+
+  <!-- Divider line above stats -->
+  <line x1="40" y1="570" x2="1160" y2="570" stroke="#334155" stroke-width="0.5" opacity="0.5"/>
+
+  <!-- Title text -->
+  <g font-family="system-ui, -apple-system, sans-serif">
+    <!-- Category tag -->
+    <rect x="80" y="80" width="32" height="18" rx="3" fill="#6366f1" opacity="0.9"/>
+    <text x="96" y="93" fill="#fff" font-size="10" font-weight="600" text-anchor="middle" letter-spacing="0.5">AI</text>
+    <rect x="118" y="80" width="52" height="18" rx="3" fill="#d97706" opacity="0.7"/>
+    <text x="144" y="93" fill="#fff" font-size="10" font-weight="600" text-anchor="middle" letter-spacing="0.5">Malawi</text>
+
+    <!-- Main title -->
+    <text x="80" y="148" fill="#f8fafc" font-size="36" font-weight="700" letter-spacing="-0.5">
+      Africa's AI Gap
+    </text>
+    <text x="80" y="188" fill="#94a3b8" font-size="20" font-weight="400" letter-spacing="0.2">
+      Infrastructure, Policy, and the Long Road
+    </text>
+    <text x="80" y="216" fill="#94a3b8" font-size="20" font-weight="400" letter-spacing="0.2">
+      to Frontier Models
+    </text>
+
+    <!-- Author -->
+    <text x="80" y="260" fill="#64748b" font-size="13" font-weight="400">
+      Joel Fickson Ngozo
+    </text>
+    <circle cx="218" cy="256" r="1.5" fill="#475569"/>
+    <text x="228" y="260" fill="#64748b" font-size="13" font-weight="400">
+      April 2026
+    </text>
+  </g>
+</svg>
