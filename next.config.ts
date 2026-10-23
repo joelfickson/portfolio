@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [{ source: "/career", destination: "/about", permanent: true }];
+  },
 };
 
 export default nextConfig;

@@ -2,39 +2,35 @@ import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
-import { JetBrains_Mono, Outfit, Syne } from "next/font/google";
+import { Instrument_Sans, Literata } from "next/font/google";
 import "../globals.css";
 
-const syne = Syne({
+const literata = Literata({
   subsets: ["latin"],
-  variable: "--font-syne",
+  style: ["normal", "italic"],
+  variable: "--font-literata",
   display: "swap",
 });
 
-const outfit = Outfit({
+const instrument = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-instrument",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-});
+const description =
+  "Engineer and founder. Developer Success Engineer at Vercel and founder of Chia, Kazuni, Sekuire, Vwaza and Luwawa. From Malawi, living in Berlin.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://joelfickson.com"),
   title: {
-    default: "Joel Fickson Ngozo - Founder & Engineer",
+    default: "Joel Fickson Ngozo - Engineer and founder",
     template: "%s | Joel Fickson Ngozo",
   },
-  description:
-    "Technical founder and full-stack engineer building products that move Africa forward. Founder of Sekuire, Elior Health, and Vwaza.",
+  description,
   openGraph: {
     title: "Joel Fickson Ngozo",
-    description:
-      "Technical founder and full-stack engineer building products that move Africa forward.",
+    description,
     type: "website",
     url: "/",
     images: [{ url: "/og.jpg", width: 1200, height: 630 }],
@@ -69,7 +65,7 @@ export default function SiteLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${syne.variable} ${outfit.variable} ${jetbrainsMono.variable} font-sans bg-stone-50 dark:bg-stone-950 text-stone-800 dark:text-stone-200 antialiased`}
+        className={`${literata.variable} ${instrument.variable} bg-bg font-serif text-ink antialiased`}
       >
         <script
           type="application/ld+json"
@@ -79,7 +75,12 @@ export default function SiteLayout({
               "@type": "Person",
               name: "Joel Fickson Ngozo",
               url: "https://joelfickson.com",
-              jobTitle: "Founder & Software Engineer",
+              jobTitle: "Developer Success Engineer",
+              worksFor: {
+                "@type": "Organization",
+                name: "Vercel",
+                url: "https://vercel.com",
+              },
               sameAs: [
                 "https://github.com/joelfickson",
                 "https://linkedin.com/in/joelfickson",
@@ -90,11 +91,7 @@ export default function SiteLayout({
         />
         <ThemeProvider>
           <Navigation />
-          <main className="site-shell min-h-screen pt-16 overflow-x-clip">
-            <div className="ambient-orb ambient-orb-a" />
-            <div className="ambient-orb ambient-orb-b" />
-            <div className="relative z-10">{children}</div>
-          </main>
+          <main className="min-h-screen">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

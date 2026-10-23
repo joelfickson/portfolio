@@ -1,13 +1,14 @@
+import { ArticleToc } from "@/components/article-toc";
+import { PortableText } from "@/components/portable-text";
+import { blockText, collectCitations, collectHeadings } from "@/lib/citations";
+import { hostname, monthYear, readingMinutes, slugify } from "@/lib/format";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import { ADJACENT_POSTS_QUERY, POSTS_QUERY, POST_QUERY } from "@/sanity/lib/queries";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { client } from "@/sanity/lib/client";
-import { POST_QUERY, POSTS_QUERY } from "@/sanity/lib/queries";
-import { urlFor } from "@/sanity/lib/image";
-import { PortableText } from "@/components/portable-text";
-import { ReadingProgress } from "@/components/reading-progress";
-import { BlogCard } from "@/components/blog-card";
+import { notFound } from "next/navigation";
 
 export const revalidate = 60;
 export const dynamicParams = true;
@@ -15,6 +16,9 @@ export const dynamicParams = true;
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+const columns =
+  "grid grid-cols-1 gap-x-12 md:grid-cols-[180px_minmax(0,640px)] min-[1180px]:grid-cols-[180px_minmax(0,640px)_200px]";
 
 export async function generateStaticParams() {
   const posts = await client.fetch(POSTS_QUERY);
@@ -55,162 +59,148 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = await client.fetch(POST_QUERY, { slug });
-
   if (!post) notFound();
 
-  const allPosts = await client.fetch(POSTS_QUERY);
-  const related = allPosts.filter((p: any) => p._id !== post._id).slice(0, 3);
+  const adjacent = post.publishedAt
+    ? await client.fetch(ADJACENT_POSTS_QUERY, { publishedAt: post.publishedAt })
+    : { previous: null, next: null };
+  const body: any[] = post.body ?? [];
+  const content =
+    body[0]?._type === "block" && blockText(body[0]).trim() === post.title.trim()
+      ? body.slice(1)
+      : body;
+  const citations = collectCitations(content);
+  const headings = collectHeadings(content);
+  const sources = Array.from(citations.values());
+  const minutes = readingMinutes(post.plain);
+  const topic = post.categories?.[0];
+  const authorImage = post.author?.image?.asset
+    ? urlFor(post.author.image).width(96).height(96).url()
+    : "/og.jpeg";
 
-  const date = post.publishedAt
-    ? new Date(post.publishedAt).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    : null;
-
-  const readingTime = post.body
-    ? Math.max(
-        1,
-        Math.ceil(
-          post.body
-            .filter((b: any) => b._type === "block")
-            .reduce(
-              (acc: number, b: any) =>
-                acc +
-                (b.children || []).reduce(
-                  (a: number, c: any) => a + (c.text?.split(/\s+/).length || 0),
-                  0,
-                ),
-              0,
-            ) / 200,
-        ),
-      )
-    : null;
+  const avatar = (size: number) => (
+    <Image
+      src={authorImage}
+      alt=""
+      width={size}
+      height={size}
+      style={{ width: size, height: size }}
+      className="shrink-0 rounded-full object-cover object-top"
+    />
+  );
 
   return (
-    <>
-      <ReadingProgress />
-
-      <article className="max-w-3xl mx-auto px-6 pt-24 pb-16">
-        <div className="animate-fade-in">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-xs text-stone-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors mb-12 group"
-          >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              className="transition-transform group-hover:-translate-x-1"
-            >
-              <path d="M19 12H5M12 19l-7-7 7-7" />
-            </svg>
-            Back to blog
-          </Link>
-        </div>
-
-        <header
-          style={{
-            animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both",
-          }}
-        >
-          {post.categories && post.categories.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-5">
-              {post.categories.map((cat: string) => (
-                <span
-                  key={cat}
-                  className="inline-flex items-center px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-[0.15em] rounded-full border bg-accent-500/10 text-accent-600 dark:text-accent-400 border-accent-500/20"
-                >
-                  {cat}
-                </span>
-              ))}
-            </div>
-          )}
-
-          <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-[2.75rem] text-stone-900 dark:text-stone-100 leading-[1.1] mb-6">
+    <div className="shell-article">
+      <header className={`${columns} pt-[88px] pb-14 max-md:pt-12 max-md:pb-9`}>
+        <div className="md:col-start-2">
+          <div className="mb-[18px] font-ui text-[13px] text-faint nums">
+            {[monthYear(post.publishedAt), minutes && `${minutes} min read`]
+              .filter(Boolean)
+              .join(" · ")}
+            {topic && (
+              <>
+                {" · "}
+                <Link href={`/blog?topic=${slugify(topic)}`} className="text-accent">
+                  {topic}
+                </Link>
+              </>
+            )}
+          </div>
+          <h1 className="text-[42px] leading-[1.18] tracking-[-0.012em] nums max-md:text-[32px]">
             {post.title}
           </h1>
-
-          <div className="flex items-center gap-4 text-sm text-stone-400 dark:text-stone-500 pb-8 mb-10 border-b border-stone-200/60 dark:border-stone-800/60">
-            {post.author?.image?.asset && (
-              <Image
-                src={urlFor(post.author.image).width(40).height(40).url()}
-                alt={post.author.name}
-                width={40}
-                height={40}
-                className="w-8 h-8 rounded-full object-cover ring-2 ring-stone-200 dark:ring-stone-800"
-              />
-            )}
-            {post.author?.name && (
-              <span className="font-medium text-stone-600 dark:text-stone-300">
-                {post.author.name}
-              </span>
-            )}
-            {date && (
-              <>
-                <span className="w-1 h-1 rounded-full bg-stone-300 dark:bg-stone-700" />
-                <time className="font-mono text-xs">{date}</time>
-              </>
-            )}
-            {readingTime && (
-              <>
-                <span className="w-1 h-1 rounded-full bg-stone-300 dark:bg-stone-700" />
-                <span className="font-mono text-xs">{readingTime} min read</span>
-              </>
-            )}
+          <div className="mt-7 flex items-center gap-3 font-ui text-sm text-mute">
+            {avatar(36)}
+            <div>
+              <b className="block font-medium text-ink">Joel Fickson Ngozo</b>
+              Berlin
+            </div>
           </div>
-        </header>
-
-        {post.mainImage?.asset && (
-          <div
-            className="aspect-[16/9] rounded-xl overflow-hidden mb-14 bg-stone-100 dark:bg-stone-900 ring-1 ring-stone-200/50 dark:ring-stone-800/50"
-            style={{
-              animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both",
-            }}
-          >
-            <Image
-              src={urlFor(post.mainImage).width(1200).height(675).url()}
-              alt={post.mainImage.alt || post.title}
-              width={1200}
-              height={675}
-              className="w-full h-full object-cover"
-              priority
-            />
-          </div>
-        )}
-
-        <div
-          className="prose-article"
-          style={{
-            animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both",
-          }}
-        >
-          {post.body && <PortableText value={post.body} />}
         </div>
-      </article>
+      </header>
 
-      {related.length > 0 && (
-        <aside className="max-w-5xl mx-auto px-6 lg:px-8 pb-20">
-          <div className="border-t border-stone-200/60 dark:border-stone-800/60 pt-14">
-            <div className="flex items-center gap-4 mb-10">
-              <span className="font-mono text-[10px] text-stone-300 dark:text-stone-700">More</span>
-              <div className="h-px flex-1 bg-stone-200 dark:bg-stone-800" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-400 dark:text-stone-600">
-                Keep Reading
-              </span>
-            </div>
-            <div className="divide-y divide-stone-200/60 dark:divide-stone-800/60">
-              {related.map((p: any, i: number) => (
-                <BlogCard key={p._id} index={i} variant="editorial" {...p} />
-              ))}
-            </div>
-          </div>
-        </aside>
+      {post.mainImage?.asset && (
+        <div className={`${columns} mb-14`}>
+          <Image
+            src={urlFor(post.mainImage).width(1280).url()}
+            alt={post.mainImage.alt || post.title}
+            width={1280}
+            height={720}
+            priority
+            sizes="(min-width: 820px) 640px, 100vw"
+            className="h-auto w-full md:col-start-2"
+          />
+        </div>
       )}
-    </>
+
+      <div className={columns}>
+        <ArticleToc items={headings} />
+        <article className="prose-article md:col-start-2">
+          <PortableText value={content} citations={citations} />
+        </article>
+      </div>
+
+      {sources.length > 0 && (
+        <section id="sources" className={`${columns} mt-[72px] border-t border-rule py-[52px]`}>
+          <h2 className="pt-1.5 pb-[18px] font-ui text-[13px] font-medium text-faint">Sources</h2>
+          <ol className="font-ui text-sm text-mute">
+            {sources.map((s) => (
+              <li
+                key={s.n}
+                id={`source-${s.n}`}
+                className="grid scroll-mt-6 grid-cols-[28px_1fr] py-1.5 nums"
+              >
+                <span className="font-semibold text-accent">{s.n}</span>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-rule underline-offset-[3px] hover:text-accent"
+                >
+                  {s.label.trim() || hostname(s.href)}
+                  <span className="text-faint"> · {hostname(s.href)}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      <section className={`${columns} border-t border-rule py-[52px]`}>
+        <div className="flex items-start gap-4 font-ui text-[15px] leading-relaxed text-mute md:col-start-2">
+          {avatar(48)}
+          <div>
+            <b className="block font-medium text-ink">Joel Fickson Ngozo</b>
+            Engineer at Vercel and founder. I write about engineering and technology in Africa.{" "}
+            <Link href="/contact" className="text-accent">
+              Get in touch.
+            </Link>
+          </div>
+        </div>
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:col-start-2">
+          {adjacent.previous ? (
+            <Link href={`/blog/${adjacent.previous.slug.current}`} className="group">
+              <span className="mb-1 block font-ui text-[13px] text-faint">Previous</span>
+              <b className="text-xl font-medium leading-snug group-hover:text-accent">
+                {adjacent.previous.title}
+              </b>
+            </Link>
+          ) : (
+            <span />
+          )}
+          <Link
+            href={adjacent.next ? `/blog/${adjacent.next.slug.current}` : "/blog"}
+            className="group sm:text-right"
+          >
+            <span className="mb-1 block font-ui text-[13px] text-faint">
+              {adjacent.next ? "Next" : "More"}
+            </span>
+            <b className="text-xl font-medium leading-snug group-hover:text-accent">
+              {adjacent.next ? adjacent.next.title : "All writing"}
+            </b>
+          </Link>
+        </div>
+      </section>
+    </div>
   );
 }
