@@ -1,25 +1,16 @@
-import type { Metadata } from "next";
+import { PageHeader } from "@/components/page-header";
+import { type WritingItem, WritingList } from "@/components/writing-list";
+import { monthYear, readingMinutes } from "@/lib/format";
 import { client } from "@/sanity/lib/client";
 import { POSTS_QUERY } from "@/sanity/lib/queries";
-import { BlogFilter } from "@/components/blog-filter";
+import type { Metadata } from "next";
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Writing",
   description:
-    "Thoughts on engineering, building companies, and technology in Africa by Joel Fickson Ngozo.",
-  openGraph: {
-    title: "Blog",
-    description:
-      "Thoughts on engineering, building companies, and technology in Africa by Joel Fickson Ngozo.",
-    url: "/blog",
-  },
-  twitter: {
-    title: "Blog",
-    description:
-      "Thoughts on engineering, building companies, and technology in Africa by Joel Fickson Ngozo.",
-  },
+    "Notes on engineering, building companies from Malawi and Berlin, and technology in Africa.",
   alternates: {
     canonical: "/blog",
   },
@@ -27,52 +18,28 @@ export const metadata: Metadata = {
 
 export default async function BlogPage() {
   const posts = await client.fetch(POSTS_QUERY);
+  const items: WritingItem[] = posts.map((p: any) => ({
+    _id: p._id,
+    title: p.title,
+    slug: p.slug.current,
+    excerpt: p.excerpt ?? undefined,
+    year: new Date(p.publishedAt).getFullYear().toString(),
+    date: monthYear(p.publishedAt),
+    minutes: readingMinutes(p.plain),
+    categories: p.categories ?? [],
+  }));
 
   return (
-    <div className="max-w-5xl mx-auto px-6 lg:px-8 pt-24 pb-16">
-      <div className="animate-fade-in">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="h-px w-8 gradient-line" />
-          <p className="font-mono text-xs tracking-[0.3em] uppercase text-accent-600 dark:text-accent-400">
-            Blog
-          </p>
-        </div>
+    <div className="shell">
+      <div className="mx-auto max-w-[868px]">
+        <PageHeader
+          title="Writing"
+          intro="Notes on engineering, building companies from Malawi and Berlin, and what AI looks like from the African side of the gap."
+        />
+        <section className="border-t border-rule pt-[52px] pb-16">
+          <WritingList posts={items} />
+        </section>
       </div>
-      <h1
-        className="font-display font-bold text-4xl sm:text-5xl md:text-6xl text-stone-900 dark:text-stone-100 mb-4 leading-[1.05]"
-        style={{
-          animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both",
-        }}
-      >
-        Writing
-      </h1>
-      <p
-        className="text-lg text-stone-500 dark:text-stone-400 max-w-2xl mb-14 leading-relaxed"
-        style={{
-          animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both",
-        }}
-      >
-        Thoughts on engineering, building companies, and making technology work for people who need
-        it most.
-      </p>
-
-      {posts.length > 0 ? (
-        <BlogFilter posts={posts} />
-      ) : (
-        <div
-          className="py-24 text-center"
-          style={{
-            animation: "slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both",
-          }}
-        >
-          <p className="font-display text-2xl text-stone-300 dark:text-stone-700 mb-3">
-            Nothing here yet.
-          </p>
-          <p className="text-sm text-stone-400 dark:text-stone-600">
-            Posts will appear here once published in the Studio.
-          </p>
-        </div>
-      )}
     </div>
   );
 }

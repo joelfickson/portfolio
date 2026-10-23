@@ -2,134 +2,43 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { ThemeToggle } from "./theme-toggle";
 
 const links = [
-  { href: "/about", label: "About", num: "01" },
-  { href: "/career", label: "Career", num: "02" },
-  { href: "/ventures", label: "Ventures", num: "03" },
-  { href: "/projects", label: "Projects", num: "04" },
-  { href: "/blog", label: "Blog", num: "05" },
-  { href: "/contact", label: "Contact", num: "06" },
+  { href: "/blog", label: "Writing" },
+  { href: "/ventures", label: "Ventures" },
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Navigation() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-stone-50/80 dark:bg-stone-950/80 backdrop-blur-xl border-b border-stone-200/40 dark:border-stone-800/40">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link
-          href="/"
-          className="font-display font-bold text-lg tracking-tight text-stone-900 dark:text-stone-100 hover:text-accent-600 dark:hover:text-accent-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950 rounded-sm"
-        >
-          JFN
-          <span className="text-accent-500">.</span>
-        </Link>
-
-        <div className="hidden md:flex items-center gap-1">
-          {links.map((link) => {
-            const active = isActive(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={active ? "page" : undefined}
-                className={`group relative px-3 py-1.5 text-sm rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950 ${
-                  active
-                    ? "text-accent-600 dark:text-accent-400"
-                    : "text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100"
-                }`}
-              >
-                <span className="font-mono text-[10px] text-stone-300 dark:text-stone-700 mr-1">
-                  {link.num}
-                </span>
-                {link.label}
-                <span
-                  className={`absolute left-3 right-3 -bottom-[6px] h-[2px] rounded-full transition-all duration-200 ${
-                    active
-                      ? "bg-accent-500 opacity-100"
-                      : "bg-stone-300 dark:bg-stone-700 opacity-0 group-hover:opacity-60"
-                  }`}
-                />
-              </Link>
-            );
-          })}
-          <div className="ml-2 pl-3 border-l border-stone-200 dark:border-stone-800">
-            <ThemeToggle />
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3 md:hidden">
-          <ThemeToggle />
-          <button
-            type="button"
-            onClick={() => setOpen(!open)}
-            className="w-9 h-9 flex items-center justify-center text-stone-600 dark:text-stone-400 cursor-pointer rounded-full hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950"
-            aria-label="Toggle menu"
-          >
-            {open ? (
-              <svg
-                aria-hidden="true"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            ) : (
-              <svg
-                aria-hidden="true"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </svg>
-            )}
-          </button>
-        </div>
+    <nav className="shell flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 pt-9 font-ui text-sm text-mute">
+      <Link href="/" className="font-semibold text-ink">
+        Joel Fickson Ngozo
+      </Link>
+      <div className="flex flex-wrap gap-x-[22px] gap-y-2">
+        {links.map((link) => {
+          const active = isActive(link.href);
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={active ? "page" : undefined}
+              className={
+                active
+                  ? "text-ink underline decoration-accent decoration-[1.5px] underline-offset-[6px]"
+                  : "transition-colors hover:text-ink"
+              }
+            >
+              {link.label}
+            </Link>
+          );
+        })}
       </div>
-
-      {open && (
-        <div className="md:hidden bg-stone-50/95 dark:bg-stone-950/95 backdrop-blur-xl border-t border-stone-200/50 dark:border-stone-800/50">
-          <div className="px-6 py-6 flex flex-col gap-1">
-            {links.map((link) => {
-              const active = isActive(link.href);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className={`flex items-center gap-3 py-2.5 px-2 rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500/60 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-50 dark:focus-visible:ring-offset-stone-950 ${
-                    active
-                      ? "text-accent-600 dark:text-accent-400 bg-accent-500/10"
-                      : "text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-900"
-                  }`}
-                  aria-current={active ? "page" : undefined}
-                >
-                  <span className="font-mono text-[10px] text-stone-300 dark:text-stone-700 w-5">
-                    {link.num}
-                  </span>
-                  <span className="text-sm">{link.label}</span>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      )}
     </nav>
   );
 }
