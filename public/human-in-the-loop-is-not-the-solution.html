@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Human In The Loop Is Not The Solution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f6f2;
+    --text: #1b1d21;
+    --muted: #5f636a;
+    --rule: #dfddd6;
+    --accent: #2b5a8c;
+    --accent-soft: #d6e3f1;
+    --node: #efede7;
+    --node-stroke: #cfccc4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15171a;
+      --text: #e7e5df;
+      --muted: #a4a8ae;
+      --rule: #2a2d32;
+      --accent: #8db3df;
+      --accent-soft: #23354a;
+      --node: #1d2024;
+      --node-stroke: #3a3e44;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15171a;
+    --text: #e7e5df;
+    --muted: #a4a8ae;
+    --rule: #2a2d32;
+    --accent: #8db3df;
+    --accent-soft: #23354a;
+    --node: #1d2024;
+    --node-stroke: #3a3e44;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Literata, Georgia, serif;
+    font-size: 20px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 96px 16px 120px;
+  }
+  .kicker {
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 20px;
+  }
+  h1 {
+    font-size: clamp(36px, 7vw, 54px);
+    line-height: 1.08;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+  }
+  .byline {
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-size: 15px;
+    color: var(--muted);
+    margin: 0 0 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+  h2 {
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 64px 0 16px;
+  }
+  p { margin: 0 0 22px; }
+  em { font-style: italic; }
+  .pull {
+    font-size: 26px;
+    line-height: 1.4;
+    margin: 36px 0;
+    padding-left: 22px;
+    border-left: 2px solid var(--accent);
+  }
+  a {
+    color: var(--text);
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+  }
+  figure { margin: 44px 0 48px; }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption {
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+  svg text {
+    font-family: "Instrument Sans", system-ui, sans-serif;
+    fill: var(--text);
+  }
+  .n { fill: var(--node); stroke: var(--node-stroke); stroke-width: 1.2; }
+  .n-h { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.4; }
+  .arrow { stroke: var(--muted); stroke-width: 1.6; fill: none; }
+  .arrow-h { stroke: var(--accent); stroke-width: 1.6; fill: none; stroke-dasharray: 5 5; }
+  .muted { fill: var(--muted) !important; }
+  .accent { fill: var(--accent) !important; }
+  .axis { stroke: var(--muted); stroke-width: 1.2; }
+  .cap { stroke: var(--text); stroke-width: 2; }
+  .curve { stroke: var(--accent); stroke-width: 3; fill: none; }
+  .gap { fill: var(--accent); opacity: 0.16; }
+  .end {
+    margin-top: 72px;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+    font-size: 24px;
+    line-height: 1.45;
+  }
+  @media (max-width: 520px) {
+    body { font-size: 18px; }
+    main { padding-top: 56px; }
+    .pull { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="kicker">Essay</p>
+  <h1>Human In The Loop Is Not The Solution</h1>
+  <p class="byline">Joel Fickson</p>
+
+  <p>I have been thinking about Human Computer Interaction and Human In The Loop quite a lot lately. You see, I have been looking for something to build, and every time I sit down to think about ideas, I end up back at the same place. Humans and agents. Who does what? Who is in control?</p>
+  <p>One thing I have noticed about myself this year is that <a href="https://x.com/JoelFickson/status/2068665922030604518">I have gotten good at reading research papers</a>. I take a concept and I just dive deep until I understand it. I used to do it before, but now it has become second nature. It's like the gym. Once you get consistent, it stops feeling like work. So naturally, I went deep on this one.</p>
+
+  <h2>Humans Are The Bottleneck</h2>
+  <p>We all know Agents have taken the world by storm. Everyone I know is shipping more than they ever have. I am too. But as I was thinking and meditating about this, I started looking at the amount of work everyone is producing with Agents. And the world seems to agree on one thing: Humans have become the bottleneck. We have become the slowing down entity in the cycle of work.</p>
+  <p>Let me explain how I picture work being done today.</p>
+
+  <figure>
+    <svg viewBox="0 0 640 300" role="img" aria-label="The loop: a human prompts, the agent works autonomously, returns work or asks for input, and a human reviews and approves before the agent continues.">
+      <defs>
+        <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" style="fill: var(--muted)"/>
+        </marker>
+        <marker id="ah-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 z" style="fill: var(--accent)"/>
+        </marker>
+      </defs>
+
+      <rect class="n-h" x="10" y="40" width="160" height="64" rx="10"/>
+      <text x="90" y="68" text-anchor="middle" font-size="14" font-weight="600">Human</text>
+      <text x="90" y="88" text-anchor="middle" font-size="13" class="muted">prompts</text>
+
+      <rect class="n" x="240" y="40" width="160" height="64" rx="10"/>
+      <text x="320" y="68" text-anchor="middle" font-size="14" font-weight="600">Agent</text>
+      <text x="320" y="88" text-anchor="middle" font-size="13" class="muted">works autonomously</text>
+
+      <rect class="n" x="470" y="40" width="160" height="64" rx="10"/>
+      <text x="550" y="68" text-anchor="middle" font-size="14" font-weight="600">Agent</text>
+      <text x="550" y="88" text-anchor="middle" font-size="13" class="muted">returns work or asks</text>
+
+      <rect class="n-h" x="240" y="196" width="160" height="64" rx="10"/>
+      <text x="320" y="224" text-anchor="middle" font-size="14" font-weight="600">Human</text>
+      <text x="320" y="244" text-anchor="middle" font-size="13" class="muted">reviews and approves</text>
+
+      <path class="arrow" d="M172 72 H236" marker-end="url(#ah)"/>
+      <path class="arrow" d="M402 72 H466" marker-end="url(#ah)"/>
+      <path class="arrow" d="M550 106 V228 H404" marker-end="url(#ah)"/>
+      <path class="arrow-h" d="M320 194 V108" marker-end="url(#ah-a)"/>
+
+      <text x="332" y="156" font-size="13" class="accent" font-weight="500">everything waits here</text>
+    </svg>
+    <figcaption>The loop. A human prompts, the agent works, it comes back, and nothing moves until a human approves.</figcaption>
+  </figure>
+
+  <p>A Human prompts. The Agent works autonomously. It comes back with something or asks for input. Then the Human approves. Repeat.</p>
+  <p>The Agent can do in ten minutes what used to take me a day. Then it sits there. Waiting for me. Waiting for me to read the diff, check the output, click approve. And here is the thing: Agents keep getting faster. I don't. You don't. None of us do.</p>
+
+  <figure>
+    <svg viewBox="0 0 640 330" role="img" aria-label="Illustrative chart: work done by agents rises over time while human review capacity stays flat. The area between them is work that gets approved without being really reviewed.">
+      <defs>
+        <clipPath id="above">
+          <rect x="0" y="0" width="640" height="170"/>
+        </clipPath>
+      </defs>
+      <line class="axis" x1="60" y1="280" x2="610" y2="280"/>
+      <line class="axis" x1="60" y1="280" x2="60" y2="24"/>
+      <text x="60" y="14" font-size="13" class="muted">Work</text>
+      <text x="610" y="304" font-size="13" text-anchor="end" class="muted">Time</text>
+
+      <path class="gap" clip-path="url(#above)" d="M60 268 C 260 258, 420 190, 600 34 L600 280 L60 280 Z"/>
+
+      <line class="cap" x1="60" y1="170" x2="600" y2="170"/>
+      <path class="curve" d="M60 268 C 260 258, 420 190, 600 34"/>
+
+      <text x="72" y="160" font-size="13" font-weight="600">What humans can review</text>
+      <text x="586" y="30" font-size="13" font-weight="600" text-anchor="end" class="accent">Work done by agents</text>
+      <text x="540" y="124" font-size="13" text-anchor="end" class="accent">approved, not really reviewed</text>
+    </svg>
+    <figcaption>The gap. Illustrative, not real data.</figcaption>
+  </figure>
+
+  <p>Everything above that flat line is work that nobody is really reviewing. But it still gets approved. Think about that for a second.</p>
+
+  <h2>How Did They Do It?</h2>
+  <p>So I started asking myself a different question. What about areas where humans have fully automated the process? How did they manage to do it?</p>
+  <p>I got obsessed with this. How are chips made? How are cars manufactured? How much Human In The Loop is involved there? Think about it. Nobody is looking at every transistor on a chip. Nobody is checking every bolt on every car by hand. So how do they know it's good?</p>
+  <p>This is where I read about Toyota, and man, it blew my mind.</p>
+  <p>In 1896, Sakichi Toyoda built a power loom that stopped itself the moment a thread broke. Before that, one person had to stand and watch one loom the whole day. After that, one person could look after many looms, because the machine knew when something was wrong and stopped on its own. Years later, Taiichi Ohno took that idea into Toyota's car factories. They call it <em>jidoka</em>. Then they added the andon cord, a rope that any worker could pull to stop the entire line.</p>
+
+  <p class="pull">They didn't hire more people to watch the machines. They made the machines raise their hand.</p>
+
+  <p>It goes further back than cars. In World War II, the US military bought ammunition by the millions. You can't test every bullet. Once you fire it, it's gone, lol. So engineers at Bell Labs tested a small sample from each batch and judged the whole batch from that. The part I love is the rule that came with it.</p>
+
+  <p class="pull">If a supplier kept delivering clean batches, they got inspected less. If they shipped bad batches, they got inspected more. Trust was earned. And it could be lost.</p>
+
+  <p>Chips work the same way. Factories don't inspect everything. They watch the process using control charts, an idea that goes back to Walter Shewhart at Bell Labs in the 1920s. If the numbers start drifting, the line stops.</p>
+  <p>None of these industries kept a human approving every single thing. They moved the human up. The human designs the system, sets the limits, and steps in when something is off.</p>
+
+  <h2>The Paper That Got Me</h2>
+  <p>Then I read a paper by Lisanne Bainbridge from 1983 called "Ironies of Automation". It's short, but it hit me hard.</p>
+  <p>What she says is this. When you automate a lot, you take the human intelligence away from the process. The more the machine does, the less practice the human gets. And the less practice they get, the worse they become at the one job you kept them for: catching the mistake when the machine gets it wrong.</p>
+  <p>This means the reviewer becomes less knowledgeable over time. They can't check everything the way they used to. So they have to rely on a different kind of metric, something higher level than what was possible before.</p>
+  <p>Think about it. The first cars and the first chips had humans inspecting almost everything. They understood every part. Nowadays, they don't. Nobody can. They rely on different metrics: defect rates, control limits, samples. Numbers that tell you whether the whole system is healthy without you having to look at every piece.</p>
+  <p>Maybe we need the very same metric in this Agentic AI era. Because right now, we are reviewing agent work line by line, like we are inspecting the very first car to come out of the factory.</p>
+
+  <h2>Maybe It's Just A Coping Mechanism</h2>
+  <p>Here is the question I can't stop asking myself. What if Human In The Loop is just a coping mechanism for us? A way to tell ourselves that we are still in control.</p>
+  <p>Are we?</p>
+  <p>I found a study from this year called "Habituation at the Gate" that looked at how people review code written by AI agents. Over time, reviewers approved more and looked less. The code didn't get better. The reviewers just got used to it. And honestly, that's just human. We are not good at staring at a stream of stuff that is mostly fine, waiting for the one thing that isn't.</p>
+  <p>So when we say "a human approved it", what does that even mean? Did they read it? Did they understand it? Or did they approve number forty because the first thirty-nine were fine? Be honest with yourself. I know I have done it.</p>
+  <p>If we are in control now, for how long? The amount of work coming out of agents is growing way faster than the number of people who can review it. That math doesn't work out.</p>
+
+  <h2>What Kind Of Future Are We Creating?</h2>
+  <p>Let's face it. Everywhere you go, applications are being rebuilt so that Agents can use them. New APIs, new protocols, docs written for machines first. We are building a world where agents talk to agents, buy from agents, and hand work over to other agents.</p>
+  <p>And in the middle of all of that, we still want a human clicking approve on everything?</p>
+
+  <h2>Our Toyota Moment</h2>
+  <p>I think this is our Toyota moment. It's the moment Toyota understood with that loom, and the moment those engineers figured out during World War II. You can't inspect your way out of volume. At some point you have to change what the human actually does.</p>
+  <p>For agents, I think it looks something like this. The agent stops itself when it's unsure, the same way the loom stopped when a thread broke. Review follows evidence, so new agents get checked a lot and proven ones get sampled. Humans see one clean picture of what matters, not every single action. People step in for the things you can't undo, like deploying, paying or deleting, and leave the rest.</p>
+  <p>And then the part almost nobody is doing yet: we measure the humans too. Airports already do this. X-ray machines show fake threats inside real bags just to check whether the screeners are still catching them. Why aren't we doing the same for the people reviewing agent work?</p>
+  <p>Human In The Loop got us started. I don't think it's what gets us where we are going. I think we need to move from being in the loop to being on top of it. Designing the system, watching the right numbers, and stepping in when they move.</p>
+
+  <p class="end">I don't know yet exactly what I will build from all this. But I know what I am looking for now. And I'll leave you with the same question I keep asking myself: when you click approve, are you still in control?</p>
+</main>
+</body>
+</html>
