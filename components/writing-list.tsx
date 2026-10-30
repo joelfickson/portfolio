@@ -8,6 +8,7 @@ export type WritingItem = {
   _id: string;
   title: string;
   slug: string;
+  href?: string;
   excerpt?: string;
   year: string;
   date: string | null;
@@ -79,7 +80,7 @@ export function WritingList({ posts }: { posts: WritingItem[] }) {
               .map((p) => (
                 <Link
                   key={p._id}
-                  href={`/blog/${p.slug}`}
+                  href={p.href ?? `/blog/${p.slug}`}
                   className="group block border-b border-rule py-[18px] last:border-b-0"
                 >
                   <h3 className="text-[22px] font-medium leading-snug transition-colors group-hover:text-accent">
